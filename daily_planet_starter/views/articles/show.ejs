@@ -2,4 +2,18 @@
 
 <div class="well">
   <p><%= article.body %></p>
-</div>
+</div><ul>
+  <% myAnimals.forEach(function(animal, id) { %>
+  <li><%= animal.name %> is a <%= animal.type %>
+    <a class="delete-link" href="/animals/<%=animal.name %>">Delete</a>
+  </li>
+  <% }); %>
+</ul>
+
+<ul>
+  <% articles.forEach(function(article, id) { %>
+  <li><span="title"><%= article.title %></span<%= animal.type %>
+    <a class="delete-link" href="/animals/<%=animal.name %>">Delete</a>
+  </li>
+  <% }); %>
+</ul>

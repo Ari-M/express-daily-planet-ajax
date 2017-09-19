@@ -19,6 +19,7 @@ app.get('/', function(req, res) {
 });
 
 app.get('/articles', function(req, res) {
+    var articles = fs.readFileSync('articles');
     res.render('articles/index', { articles: articles });
 });
 
@@ -43,6 +44,17 @@ app.post('/articles', function(req, res) {
 app.get('/about', function(req, res) {
     res.render('about');
 });
+
+app.delete('/articles/:id', function (req, res) {
+    var articleToRemove = req.params.id;
+    var articles = readFileSync('articles');
+    articles = JSON.parse(articles);
+    animals = animals(filter(function(item){
+        return (item.title !== articleToRemove);
+    }))
+    fs.writeFileSync('articles', JSON.stringify(articles))
+    res.send({message: 'success'})
+})
 
 app.listen(3000, function() {
     console.log("You're listening to the smooth sounds of port 3000 in the morning");
