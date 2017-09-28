@@ -45,16 +45,23 @@ app.get('/about', function(req, res) {
     res.render('about');
 });
 
-app.delete('/articles/:id', function (req, res) {
-    var articleToRemove = req.params.id;
-    var articles = readFileSync('articles');
-    articles = JSON.parse(articles);
-    animals = animals(filter(function(item){
-        return (item.title !== articleToRemove);
-    }))
-    fs.writeFileSync('articles', JSON.stringify(articles))
-    res.send({message: 'success'})
+app.get('/articles/edit/:id', function(req, res) {
+    res.render('articles/edit', {article: article[req.params.id], id: req.params.id});
 })
+
+app.put('/ariticles/:id/edit', function(req, res) {
+    var articleId = pareseInt(req.params.id);
+    articles[aritcleId].title = req.body.title;
+    articles[articleId].body = req.body.body;
+    res.send({message: 'success'});
+})
+
+app.delete('/aritcle/:id', function(req, res) {
+    var deleteArticle = req.params.id;
+    articles.splice(articleToDelete,1);
+    res.send({message: success});
+})
+
 
 app.listen(3000, function() {
     console.log("You're listening to the smooth sounds of port 3000 in the morning");
