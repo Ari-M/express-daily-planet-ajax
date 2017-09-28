@@ -49,14 +49,14 @@ app.get('/articles/edit/:id', function(req, res) {
     res.render('articles/edit', {article: article[req.params.id], id: req.params.id});
 })
 
-app.put('/ariticles/:id/edit', function(req, res) {
+app.put('/articles/:id/edit', function(req, res) {
     var articleId = pareseInt(req.params.id);
     articles[aritcleId].title = req.body.title;
     articles[articleId].body = req.body.body;
     res.send({message: 'success'});
 })
 
-app.delete('/aritcle/:id', function(req, res) {
+app.delete('/article/:id', function(req, res) {
     var deleteArticle = req.params.id;
     articles.splice(articleToDelete,1);
     res.send({message: success});
